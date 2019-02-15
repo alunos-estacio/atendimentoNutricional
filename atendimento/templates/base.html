@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="{% url 'index' %}">WebNutricional</a>
+            <a class="navbar-brand" href="{% url 'atendimento_index' %}">WebNutricional</a>
             
             <!-- Links -->
             <ul class="navbar-nav">
@@ -30,10 +30,11 @@
                         Paciente
                     </a>
                     <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'cadastrar_paciente' %}">Cadastrar Paciente</a>
-                        <a class="dropdown-item" href="#">Nova Entrevista</a>
+                        <a class="dropdown-item" href="{% url 'paciente_cadastrar' %}">Cadastrar Paciente</a>
+                        <a class="dropdown-item" href="{% url 'entrevista_criar' %}">Nova Entrevista</a>
                         <a class="dropdown-item" href="#">Prontuário Médico</a>
                         <a class="dropdown-item" href="#">Preparo de Dietas</a>
+                        
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -41,7 +42,6 @@
                             Equipes
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'cadastrar_paciente' %}">Cadastrar Paciente</a>
                             <a class="dropdown-item" href="#">Cadastrar Equipe</a>
                             <a class="dropdown-item" href="#">Nova Atividade</a>
                             <a class="dropdown-item" href="#">Distribuiçao de Colaboradores</a>

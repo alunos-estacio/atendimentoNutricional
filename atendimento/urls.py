@@ -1,10 +1,12 @@
 from django.urls import path
-from atendimento.views import PacienteCreate, index
+from atendimento.views import atendimento_index, paciente_cadastrar, entrevista_criar, paciente_listar
 
 urlpatterns=[
-    path('', index, name='index'),
-        path('cadastrar-paciente/', PacienteCreate.as_view(),name='cadastrar_paciente'),
+    path('', atendimento_index, name='atendimento_index'),
+    path('paciente_cadastrar/', paciente_cadastrar, name='paciente_cadastrar'),
+    path('paciente_listar', paciente_listar, name='paciente_listar'),
+    path('entrevista_criar', entrevista_criar, name='entrevista_criar'),
 
 ]
 
-
+    
