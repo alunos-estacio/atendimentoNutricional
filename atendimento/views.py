@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Paciente
-from .forms import PacienteForm, EntrevistaForm
+from .models import Paciente, Alimentos
+from .forms import PacienteForm, EntrevistaForm, AlimentosForm
 
 # Create your views here.
 
@@ -32,3 +32,22 @@ def entrevista_criar(request):
         form = EntrevistaForm()
     return render(request, 'entrevista_create.html', {'form': form})
     
+def alimento_cadastrar(request):
+    if request.method == "POST":
+        form = AlimentosForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('atendimento_index')
+    else:
+        form = AlimentosForm()
+    return render(request, 'alimento_cadastrar.html', {'form': form})
+
+def dieta_criar(request):
+    if request.method == "POST":
+        form = AlimentosForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('atendimento_index')
+    else:
+        form = AlimentosForm()
+    return render(request, 'alimento_cadastrar.html', {'form': form})

@@ -5,8 +5,9 @@
 <br>
 <div class="container-fluid">
 <h3> Entrevista Anamnese Nutricional </h3>
-    <form action="/atendimento_index/" method="POST">
+    <form method="POST">
         <br>
+        {% csrf_token %}
         {% for field in form %}
             <div class="fieldWrapper">
                 {{ field.errors }}

@@ -51,20 +51,17 @@ class Paciente(Pessoa):
         return '%s' % (self.nome) 
 
 ESTADO_CIVIL_CHOICES = (
-    ('----', '----'),
     ('Solteiro(a)', 'Solteiro(a)'),
     ('Casado(a)', 'Casado(a)'),
     ('Viúvo(a)', 'Viúvo(a)'),
 )
 
 SIM_NAO_CHOICES=(
-    ('----', '----'),
     ('Não', 'Não'),
     ('Sim', 'Sim'),
 )
 
 LOCAL_CHOICES=(
-    ('----', '----'),
     ('Casa', 'Casa'),
     ('Trabalho', 'Trabalho'),
     ('Shopping', 'Shopping'),
@@ -72,7 +69,6 @@ LOCAL_CHOICES=(
 )
 
 BEBIDA_CHOICES=(
-    ('----', '----'),
     ('Nunca', 'Nunca'),
     ('Socialmente', 'Socialmente'),
     ('Com frequência', 'Com frequência'),
@@ -82,9 +78,9 @@ class Entrevista(models.Model):
 
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     cod_ficha = models.CharField(max_length=12, verbose_name='Cód. Ficha', null=False, blank=False)
-    motivo = models.CharField(max_length=300,verbose_name='Motivo da Consulta', null=True, blank=True)
+    motivo = models.CharField(max_length=300, verbose_name='Motivo da Consulta', null=True, blank=True)
     #historico familiar
-    estado_civil = models.CharField(max_length=15,verbose_name='Motivo da Consulta', choices = ESTADO_CIVIL_CHOICES, null=True, blank=True)
+    estado_civil = models.CharField(max_length=15,verbose_name='Estado civil', choices = ESTADO_CIVIL_CHOICES, null=True, blank=True)
     profissao = models.CharField(max_length=128, verbose_name='Profissão', null=True, blank=True)
     local= models.CharField(max_length=15, verbose_name='Local das Refeições', choices = LOCAL_CHOICES, null=True, blank=True)
     fumante = models.CharField(max_length=6,verbose_name='Fumante? ', choices = SIM_NAO_CHOICES, null=True, blank=True)
@@ -106,3 +102,47 @@ class Entrevista(models.Model):
     
     def __str__(self):
         return '%s' % (self.paciente.nome) 
+
+
+class Alimentos(models.Model):
+
+    nome = models.CharField(max_length=128, verbose_name='Nome', null=False, blank=False)
+    quantidade = models.IntegerField(verbose_name='(Q)', null=True, blank=True)
+    gramas = models.IntegerField(verbose_name='(g)', null=True, blank=True)
+    medida = models.CharField(max_length=128, verbose_name='(Medida)', null=True, blank=True)
+    proteinas = models.FloatField(verbose_name='Proteinas', null=True, blank=True)
+    carboidrato = models.FloatField(verbose_name='Carboidrato', null=True, blank=True)
+    gordura = models.FloatField(verbose_name='Gordura', null=True, blank=True)
+    calorias = models.FloatField(verbose_name='Calorias', null=True, blank=True)
+
+    class Meta: 
+        verbose_name = 'Alimentos'
+        verbose_name_plural = 'Alimentoss'
+    
+    def __str__(self):
+        return '%s' % (self.nome) 
+
+REFEICOES_CHOICES=(
+    ('Desjejum', 'Desjejum'),
+    ('Lanche', 'Lanche'),
+    ('Almoço', 'Almoço'),
+    ('Lanche', 'Lanche'),
+    ('Jantar', 'Jantar'),
+    ('Ceia', 'Ceia'),
+)
+class Refeicoes(models.Model):
+    
+    paciente = models.ForeignKey(Paciente, on_delete='CASCADE')
+    nome = models.CharField(max_length=128, verbose_name='Refeição', choices= REFEICOES_CHOICES, null=False, blank=False)
+    preparo = models.CharField(max_length=128, verbose_name='Nome', null=False, blank=False)
+    alimentos = models.ManyToManyField(Alimentos)
+
+    class Meta: 
+        verbose_name = 'Refeição'
+        verbose_name_plural = 'Refeições'
+    
+    def __str__(self):
+        return '%s' % (self.nome) 
+    
+    def get_alimentos(self):
+        return ",".join([str(a) for a in self.alimentos.all()])

@@ -5,10 +5,11 @@
 
 <div class="container-fluid">
     <br>
-    <h3>Cadastrar Paciente</h3>
+    <h3>Cadastrar Alimento</h3>
     <form method="POST">
         <br>
         {% csrf_token %}
+
         {% for field in form %}
             <div class="fieldWrapper">
                 {{ field.errors }}
@@ -16,6 +17,7 @@
                  {{ field }}
             </div>
         {% endfor %}
+        <br>
         <p><input type="submit" value="Cadastrar" /></p>
     </form>
 </div>
