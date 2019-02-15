@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Funcionario, Paciente, Equipe, Alimentos, Entrevista, Refeicoes
-
+from .models import Funcionario, Paciente, Equipe, Alimentos, Entrevista,\
+    Refeicoes, Preparo
 # Register your models here.
 
 
@@ -22,8 +22,12 @@ class EntrevistaAdmin(admin.ModelAdmin):
     list_display = ['paciente']
 
 class RefeicoesAdmin(admin.ModelAdmin):
-    list_display = ['paciente', 'nome', 'preparo', 'get_alimentos']
+    list_display = ['paciente', 'nome', 'get_preparo', 'get_alimentos']
     search_fields = ['paciente', 'cpf']
+
+class PreparoAdmin(admin.ModelAdmin):
+    list_display = ['nome']
+
 
 admin.site.register(Funcionario, FuncionarioAdmin)
 admin.site.register(Paciente, PacienteAdmin)
@@ -31,5 +35,6 @@ admin.site.register(Equipe, EquipeAdmin)
 admin.site.register(Alimentos, AlimentosAdmin)
 admin.site.register(Entrevista, EntrevistaAdmin)
 admin.site.register(Refeicoes, RefeicoesAdmin)
+admin.site.register(Preparo, PreparoAdmin)
 
 

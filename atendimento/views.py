@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Paciente, Alimentos
-from .forms import PacienteForm, EntrevistaForm, AlimentosForm
+from .forms import PacienteForm, EntrevistaForm, AlimentosForm, \
+    RefeicoesForm
 
 # Create your views here.
 
@@ -44,10 +45,10 @@ def alimento_cadastrar(request):
 
 def dieta_criar(request):
     if request.method == "POST":
-        form = AlimentosForm(request.POST)
+        form = RefeicoesForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('atendimento_index')
     else:
-        form = AlimentosForm()
+        form = RefeicoesForm()
     return render(request, 'alimento_cadastrar.html', {'form': form})

@@ -122,6 +122,21 @@ class Alimentos(models.Model):
     def __str__(self):
         return '%s' % (self.nome) 
 
+
+class Preparo(models.Model):
+    
+    nome = models.CharField(max_length=128, verbose_name='Preparação de: ', null=False, blank=False)
+
+    class Meta: 
+        verbose_name = 'Preparo'
+        verbose_name_plural = 'Preparos'
+    
+    def __str__(self):
+        return '%s' % (self.nome) 
+    
+    
+
+
 REFEICOES_CHOICES=(
     ('Desjejum', 'Desjejum'),
     ('Lanche', 'Lanche'),
@@ -130,11 +145,12 @@ REFEICOES_CHOICES=(
     ('Jantar', 'Jantar'),
     ('Ceia', 'Ceia'),
 )
+
 class Refeicoes(models.Model):
     
     paciente = models.ForeignKey(Paciente, on_delete='CASCADE')
     nome = models.CharField(max_length=128, verbose_name='Refeição', choices= REFEICOES_CHOICES, null=False, blank=False)
-    preparo = models.CharField(max_length=128, verbose_name='Nome', null=False, blank=False)
+    preparo = models.ManyToManyField(Preparo)
     alimentos = models.ManyToManyField(Alimentos)
 
     class Meta: 
@@ -146,3 +162,6 @@ class Refeicoes(models.Model):
     
     def get_alimentos(self):
         return ",".join([str(a) for a in self.alimentos.all()])
+    
+    def get_preparo(self):
+        return ",".join([str(p) for p in self.preparo.all()])

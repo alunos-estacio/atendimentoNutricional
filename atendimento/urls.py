@@ -1,5 +1,6 @@
 from django.urls import path
-from atendimento.views import atendimento_index, paciente_cadastrar, entrevista_criar, paciente_listar, alimento_cadastrar
+from atendimento.views import atendimento_index, paciente_cadastrar, entrevista_criar,\
+    paciente_listar, alimento_cadastrar, dieta_criar
 
 urlpatterns=[
     path('', atendimento_index, name='atendimento_index'),
@@ -7,6 +8,7 @@ urlpatterns=[
     path('paciente_listar', paciente_listar, name='paciente_listar'),
     path('entrevista_criar', entrevista_criar, name='entrevista_criar'),
     path('alimento_cadastrar', alimento_cadastrar, name='alimento_cadastrar'),
+    path('dieta_criar', dieta_criar, name='dieta_criar'),
 
 #corrigir problema de direcionamento
 ]
