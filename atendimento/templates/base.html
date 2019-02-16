@@ -32,24 +32,29 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'paciente_cadastrar' %}">Cadastrar Paciente</a>
                         <a class="dropdown-item" href="{% url 'entrevista_criar' %}">Nova Entrevista</a>
-                        <a class="dropdown-item" href="#">Prontuário Médico</a>
-                        <a class="dropdown-item" href="{% url 'dieta_criar' %}">Preparo de Dietas</a>
-                        
+                        <!-- <a class="dropdown-item" href="#">Prontuário Médico</a>                         -->
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Equipes
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Equipe 1</a>
-                            <a class="dropdown-item" href="#">Equipe 2</a>
-                           
-
-                        </div>
-                        
-                    </li>
-
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Equipe 1
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'dieta_criar' %}">Preparo de Dietas</a>   
+                    </div>
+                    
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Equipe 2
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Alterar Dietas</a>
+                        <a class="dropdown-item" href="{% url 'dieta_list' %}">Listagem de Dietas</a>
+                        <a class="dropdown-item" href="{% url 'dieta_atualizar' %}">Atualizar Dieta</a>
+                    </div>
+                    
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         Configurações

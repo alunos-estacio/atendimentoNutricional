@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{%block conteudo %}
+
+<br>
+
+<div class="container-fluid">
+        <h2>Listagem de Dietas para grupo 1</h2>
+        <p>Relação de todas as dietas realizadas.</p>           
+        <table class="table table-bordered"
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Matricula</th>
+                    <th>Enfermaria</th>
+                    <th>Leito</th>
+                    <th>Opção</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                {%for paciente in pacientes %}
+                    <tr>   
+                        <td>{{paciente.nome}}</td>
+                        <td>{{paciente.matricula}}</td>
+                        <td>{{paciente.get_alimentos}}</td>
+                        <td>{{paciente.leito}}</td>
+                        <td>
+                            <a class="btn btn-outline-primary" href="{% url 'paciente_detalhar' paciente.pk %}">Detalhar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table>
+      </div>
+      
+{%endblock conteudo %}

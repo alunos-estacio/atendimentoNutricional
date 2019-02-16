@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Paciente, Alimentos
+from .models import Paciente, Alimentos, Refeicoes
 from .forms import PacienteForm, EntrevistaForm, AlimentosForm, \
     RefeicoesForm
 
@@ -17,6 +17,7 @@ def paciente_cadastrar(request):
     else:
         form = PacienteForm()
     return render(request, 'paciente_cadastrar.html', {'form': form})
+
 
 def paciente_listar(request):
     paciente = Paciente.objects.all().order_by('name') 
@@ -52,3 +53,33 @@ def dieta_criar(request):
     else:
         form = RefeicoesForm()
     return render(request, 'alimento_cadastrar.html', {'form': form})
+
+
+def dieta_atualizar(request):
+    pacientes = Paciente.objects.all()
+    refeicoes = Refeicoes.objects.all()
+    return render(request, 'dieta_atualizar.html', {'pacientes': pacientes, 'refeicoes':refeicoes})
+
+
+def dieta_editar(request, pk, queryset=None):
+    paciente = Paciente.objects.get(pk=pk)
+    refeicoes = Refeicoes.objects.filter(paciente=paciente)    
+    if request.method == "POST":
+        form = RefeicoesForm(request.POST, instance=refeicoes)
+        if form.is_valid():
+            form.save()
+            return redirect('atendimento_index') 
+    else:
+        form = RefeicoesForm(instance=refeicoes)
+    return render(request, 'alimento_cadastrar.html', {'form': form})
+
+
+def dieta_list(request):
+    pacientes = Paciente.objects.all()
+    return render(request, 'dietas_listagem.html', {'pacientes': pacientes})
+
+
+def paciente_detalhar(request, pk):
+    paciente = Paciente.objects.get(pk=pk)
+    refeicoes = Refeicoes.objects.filter(paciente=paciente)
+    return render(request, 'paciente_detalhar.html', {'paciente': paciente, 'refeicoes':refeicoes})

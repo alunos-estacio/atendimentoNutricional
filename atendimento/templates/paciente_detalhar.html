@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{%block conteudo %}
+<br>
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-header">
+            <h5>{{ paciente.nome }}</h5>
+        </div>
+        <div class="card-body">
+            <div class='row'>
+                <div class="col-md-1"></div>
+                <div class="col-md-3"><h6 class="text-center" style="width: 18rem;">Matricula:</h6>{{paciente.matricula}}</div>
+                <div class="col-md-4"><h6 class="text-center" style="width: 18rem;">Enfermaria:</h6>{{paciente.enfermaria.name}}</div>
+                <div class="col-md-3"><h6 class="text-center" style="width: 18rem;">Leito:</h6>{{paciente.leito.name}}</div>
+            </div>
+
+        <a href="{% url 'dieta_list' %}" class="btn btn-outline-primary">Voltar</a>
+        </div>
+        <div class="card-footer text-muted">
+            <h5>.        .       .</h5>
+        </div>
+    </div>
+</div>
+
+
+{%endblock conteudo %}

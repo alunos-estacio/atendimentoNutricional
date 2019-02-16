@@ -9,7 +9,7 @@ class FuncionarioAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'cpf']
 
 class PacienteAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'cpf', 'matricula', 'quarto', 'data_nasc', 'idade']
+    list_display = ['nome', 'cpf', 'matricula', 'enfermaria', 'leito', 'data_nasc', 'idade']
     search_fields = ['nome', 'cpf', 'matricula']
 
 class EquipeAdmin(admin.ModelAdmin):

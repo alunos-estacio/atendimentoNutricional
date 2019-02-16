@@ -37,12 +37,18 @@ class Funcionario(Pessoa):
     def __str__(self):
         return '%s' % (self.nome) 
 
+QUARTO_CHOICES=(
+    ('Enfermaria 01', 'Enfermaria 01'),
+    ('Enfermaria 02', 'Enfermaria 02'),
+    ('Enfermaria 03', 'Enfermaria 03'),
+    ('Enfermaria 04', 'Enfermaria 04'),
+)
 
 class Paciente(Pessoa):
 
     matricula = models.CharField(max_length=12, verbose_name='Matricula', null=False, blank=False)
-    quarto = models.CharField(max_length=128,verbose_name='Quarto', null=False, blank=False)
-    
+    enfermaria = models.CharField(max_length=128,verbose_name='Enfermaria', choices=QUARTO_CHOICES, null=False, blank=False)
+    leito = models.CharField(max_length=128,verbose_name='Leito', choices=QUARTO_CHOICES, null=False, blank=False)
     class Meta: 
         verbose_name = 'Paciente'
         verbose_name_plural = 'Pacientes'
@@ -134,16 +140,14 @@ class Preparo(models.Model):
     def __str__(self):
         return '%s' % (self.nome) 
     
-    
-
 
 REFEICOES_CHOICES=(
     ('Desjejum', 'Desjejum'),
-    ('Lanche', 'Lanche'),
+    ('Lanche da Manhã', 'Lanche da Manhã'),
     ('Almoço', 'Almoço'),
-    ('Lanche', 'Lanche'),
+    ('Lanche da Tarde', 'Lanche da Tarde'),
     ('Jantar', 'Jantar'),
-    ('Ceia', 'Ceia'),
+    ('Lanche da Noite', 'Lanche da Noite'),
 )
 
 class Refeicoes(models.Model):
