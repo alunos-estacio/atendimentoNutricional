@@ -4,7 +4,6 @@ from crispy_forms.helper import FormHelper
 from atendimento.models import Paciente, Entrevista, Alimentos, \
     Refeicoes
 
-
 class PacienteForm(forms.ModelForm):
 
     class Meta:
