@@ -5,9 +5,9 @@
 
 <br>
 
-<div class="container-fluid">
+<div class="container-fluid campo col-md-11">
         <h2>Listagem de Dietas para Grupo 2</h2>
-        <p>Relação de todas as dietas realizadas pela equipe 1.</p>            
+        <p>Relação de todas as dietas realizadas pela equipe 1.</p>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -16,12 +16,12 @@
                     <th>Enfermaria</th>
                     <th>Leito</th>
                     <th>Opção</th>
-                  
+
                 </tr>
             </thead>
             <tbody>
                 {%for paciente in pacientes %}
-                    <tr>   
+                    <tr>
                         <td>{{paciente.nome}}</td>
                         <td>{{paciente.matricula}}</td>
                         <td>{{paciente.get_alimentos}}</td>
@@ -33,9 +33,9 @@
                         </td>
                     </tr>
                 {% endfor %}
-            
+
             </tbody>
         </table>
       </div>
-      
+
 {%endblock conteudo %}

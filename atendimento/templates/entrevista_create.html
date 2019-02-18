@@ -3,20 +3,23 @@
 {% load crispy_forms_tags %}
 {%block conteudo %}
 <br>
-<div class="container-fluid">
-<h3> Entrevista Anamnese Nutricional </h3>
+<div class="container-fluid campo col-md-11">
+  <br>
+  <h3> Entrevista Anamnese Nutricional </h3>
     <form method="POST">
         <br>
+        <div class="row">
         {% csrf_token %}
         {% for field in form %}
-            <div class="fieldWrapper">
+            <div class="fieldWrapper col-md-auto margin-form">
                 {{ field.errors }}
                 {{ field.label_tag }} <br>
                 {{ field }}
             </div>
         {% endfor %}
+        </div>
         <br>
-        <p><input type="submit" value="Cadastrar" /></p>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cadastrar</button>
     </form>
 </div>
 {%endblock conteudo %}
