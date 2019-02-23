@@ -3,5 +3,68 @@
 
 {%block conteudo %}
 <!-- conteúdo a ser inscrito -->
+<div class="container-fluid campo col-md-11">
+          <h3>Pacientes</h3>
+          <p>Relação de passientes.</p>
+          <table class="table table-sm table-bordered table-striped">
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Paciente</th>
+                      <th>Matricula</th>
+                      <th>Enfermaria</th>
+                      <th>Leito</th>
+                      <th>Opção</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {%for paciente in pacientes %}
+                      <tr>
+                          <td>{{paciente.nome}}</td>
+                          <td>{{paciente.matricula}}</td>
+                          <td>{{paciente.get_alimentos}}</td>
+                          <td>{{paciente.leito}}</td>
+                          <td>
+                              <a class="btn btn-outline-primary" href="{% url 'paciente_detalhar' paciente.pk %}">Detalhar</a>
+                          </td>
+                      </tr>
+                  {% endfor %}
+
+              </tbody>
+          </table>
+
+      </div>
+
+
+<div class="container-fluid campo col-md-11">
+          <h3>Refeições</h3>
+          <p>Relação de refeições.</p>
+          <table class="table table-sm table-bordered table-striped">
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Paciente</th>
+                      <th>Refeição</th>
+                      <th>Preparo</th>
+                      <th>Alimentos</th>
+                      <!--<th>Opção</th>-->
+                  </tr>
+              </thead>
+              <tbody>
+                  {%for refeicao in refeicoes %}
+                      <tr>
+                          <td>{{refeicao.paciente}}</td>
+                          <td>{{refeicao.nome}}</td>
+                          <td>{{refeicao.preparo}}</td>
+                          <td>{{refeicao.alimentos}}</td>
+                          <td>
+                              <a class="btn btn-outline-primary" href="{% url 'paciente_detalhar' paciente.pk %}">Detalhar</a>
+                          </td>
+                      </tr>
+                  {% endfor %}
+
+              </tbody>
+          </table>
+
+      </div>
+
 
 {%endblock conteudo %}
